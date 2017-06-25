@@ -23,7 +23,15 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Login","Login","Home")</li>
+@if (!Request.IsAuthenticated)
+{
+    <li>@Html.ActionLink("Login", "Login", "Home")</li>
+
+}
+else
+{
+    <li>@Html.ActionLink(Session["FName"].ToString(), "LogOff", "Home")</li>              
+    }
                 </ul>
             </div>
         </div>

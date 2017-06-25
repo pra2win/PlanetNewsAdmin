@@ -72,7 +72,7 @@ namespace PlanetNewsAdmin.Controllers
         {
             FormsAuthentication.SignOut();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Home");
         }
         public ActionResult Contact()
         {
