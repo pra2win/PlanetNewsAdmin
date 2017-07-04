@@ -21,17 +21,21 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Create News", "CreateNews", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-@if (!Request.IsAuthenticated)
-{
-    <li>@Html.ActionLink("Login", "Login", "Home")</li>
+                    @if (!Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Login", "Login", "Home")</li>
 
-}
-else
-{
-    <li>@Html.ActionLink(Session["FName"].ToString(), "LogOff", "Home")</li>              
-    }
+                    }
+                    else
+                    {
+                        if (ViewBag.UserFname != null)
+                        {
+                            string text = ViewBag.UserFname;
+                            <li class="pull-right" title="Logout">@Html.ActionLink(text, "LogOff", "Home")</li>
+                        }
+                    }
                 </ul>
             </div>
         </div>

@@ -11,10 +11,11 @@ namespace PlanetNewsAdmin.Controllers
 {
     public class HomeController : Controller
     {
-     //   public object ServerBAL { get; private set; }
-
+        [Authorize]
         public ActionResult Index()
         {
+            if (Session["Fname"] != null)
+                ViewBag.UserFname = Session["Fname"];
             return View();
         }
 
@@ -46,6 +47,7 @@ namespace PlanetNewsAdmin.Controllers
                     Session.Add("FName", entities.FirstName);
                     Session.Add("FullName", string.Join(" ", entities.FirstName, entities.LastName));
                     Session.Add("UserId", entities.UserRegistrationId);
+                    ViewBag.UserFname = entities.FirstName;
 
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
